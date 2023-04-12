@@ -1,4 +1,7 @@
 <script lang="ts">
+    import { nextRound } from "$lib/functions";
+    import { choosenDare, choosenPlayer, gamemode } from "$lib/stores";
+
     const corners = "theme-radius";
     const outline = "bord-secondary bord--solid bord-width--2";
 
@@ -14,6 +17,13 @@
     const xScreen = `bg-dark block w--100vw h--100vh p--fixed inset ${noscroll}`;
     const xContent = `bg-primary block w--100 h--100 ${outline} ${corners} ${scrollColumn}`;
     const xFrame = `bg-brown--1 flex column w--100 h--100 pt--16 px--24 pb--12 gap--12 ${outline} ${corners} ${noscroll}`;
+
+    function nextMinus() {
+        nextRound();
+    }
+    function nextPlus() {
+        nextRound();
+    }
 </script>
 
 <x-screen class={xScreen}>
@@ -28,12 +38,20 @@
                 />
             </row>
             <row class="justify--center {row}">
-                <button class="bg-red--5 {button}">
-                    <p>Pass</p>
-                </button>
-                <button class="bg-green--5 {button}">
-                    <p>Done</p>
-                </button>
+                {#if $gamemode.onGoing}
+                    <button
+                        class="bg-red--5 {button}"
+                        on:click={() => nextMinus()}
+                    >
+                        <p>Pass</p>
+                    </button>
+                    <button
+                        class="bg-green--5 {button}"
+                        on:click={() => nextPlus()}
+                    >
+                        <p>Done</p>
+                    </button>
+                {/if}
             </row>
             <row class="justify--end {row}">
                 <icon class="clr-tertiary {icon}">

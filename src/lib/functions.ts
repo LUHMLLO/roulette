@@ -1,5 +1,5 @@
 import type { Dare, Gamemode, Player } from "./interfaces";
-import { dares, gamemode, players } from "./stores";
+import { choosenDare, choosenPlayer, dares, gamemode, players } from "./stores";
 
 export function addDare(d: Dare) {
     dares.update(list => [...list, d]);
@@ -43,9 +43,20 @@ export function initGameMode(d: Dare[], p: Player[]) {
         name: 'base game',
         description: 'base game description',
         onGoing: true,
+        players: p,
         dares: d,
-        players: p
     })
 
     gamemode.subscribe((g) => console.log(g))
+}
+
+
+export function nextRound() {
+    gamemode.subscribe((g) => {
+        const p = Math.floor(Math.random() * g.players!.length);
+        const d = Math.floor(Math.random() * g.dares!.length);
+
+        choosenPlayer.set(g.players![p]);
+        choosenDare.set(g.dares![d]);
+    })
 }

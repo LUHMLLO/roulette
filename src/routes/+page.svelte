@@ -12,22 +12,11 @@
     import {
         initGameMode,
         addDare,
-        updateDare,
-        deleteDare,
         addPlayer,
-        updatePlayer,
-        deletePlayer,
+        nextRound,
     } from "$lib/functions";
 
     let inputPlayerName: string;
-
-    function nextRound() {
-        const d = Math.floor(Math.random() * $gamemode.dares!.length);
-        const p = Math.floor(Math.random() * $gamemode.players!.length);
-
-        choosenDare.set($gamemode.dares![d]);
-        choosenPlayer.set($gamemode.players![p]);
-    }
 
     function startGame() {
         addDare({
@@ -97,7 +86,11 @@
         <h3>Who's going to play?</h3>
         <form
             on:submit|preventDefault={() => {
-                addPlayer({ name: inputPlayerName });
+                addPlayer({
+                    avatar: "none",
+                    name: inputPlayerName,
+                    lives: 9,
+                });
                 inputPlayerName = "";
             }}
         >
@@ -129,9 +122,9 @@
             <button
                 on:click={() => startGame()}
                 disabled={$players.length < 2 || $players.length < 1}
+                class="bg-accent clr-primary px--24 py--12 theme-radius text--24 my--24"
+                >Start game</button
             >
-                Start game
-            </button>
         </container>
     </grid>
 {/if}
@@ -142,8 +135,6 @@
             <h2>Gameplay:</h2>
             <p>Selected player: {$choosenPlayer.name}</p>
             <p>Selected dare: {$choosenDare.description}</p>
-
-            <button on:click={() => nextRound()}> Next </button>
         </container>
     </grid>
 {/if}

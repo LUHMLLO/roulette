@@ -8,17 +8,17 @@ export interface Dare {
 }
 
 export interface Player {
-  icon?: string;
+  avatar: string;
   name: string;
-  points?: number;
+  lives: number
 }
 
 export interface Gamemode {
-  icon?: string;
+  icon: string;
   name: string;
   description: string;
   onGoing: boolean;
-  dares?: Dare[];
   players?: Player[];
+  dares?: Dare[];
   winners?: Player[];
 }
