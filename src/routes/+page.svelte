@@ -1,11 +1,15 @@
 <script lang="ts">
-    import { Difficulty, type Dare } from "$lib/interfaces";
+    import { Difficulty } from "$lib/interfaces";
+
     import {
         choosenDare,
         choosenPlayer,
         gamemode,
         players,
         dares,
+    } from "$lib/stores";
+
+    import {
         initGameMode,
         addDare,
         updateDare,
@@ -13,7 +17,7 @@
         addPlayer,
         updatePlayer,
         deletePlayer,
-    } from "$lib/stores";
+    } from "$lib/functions";
 
     let inputPlayerName: string;
 
@@ -72,34 +76,48 @@
     }
 </script>
 
-<grid class="place--center h--100vh bg-complementary clr-primary">
+<grid class="place--center h--100">
     <container class="container text--center">
-        <h1>Greetings</h1>
-        <p>
-            Aliquid ex delectus maiores, nam sit reiciendis placeat ratione
-            blanditiis, laudantium vel ipsum modi fuga molestias voluptatibus
-            laboriosam debitis est sed assumenda.
+        <h3 class="clr-accent">Bonjour!</h3>
+        <h1 class="clr-secondary">Bienvenue to Roulette.</h1>
+        <p class="clr-tertiary text--24">
+            Let's see if Lady Luck is on your side today.
+            <br />
+            With so many possibilities, who knows what the outcome will be!
         </p>
-        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
-        <button class="bg-accent clr-primary">Let's go</button>
+        <button
+            class="bg-accent clr-primary px--24 py--12 theme-radius text--24 my--24"
+            >Start playing</button
+        >
     </container>
 </grid>
 
-<grid class="place--center h--100vh">
+<grid class="place--center h--100">
     <container class="container text--center">
+        <h3>Who's going to play?</h3>
         <form
-            on:submit|preventDefault={() =>
-                addPlayer({ name: inputPlayerName })}
+            on:submit|preventDefault={() => {
+                addPlayer({ name: inputPlayerName });
+                inputPlayerName = "";
+            }}
         >
-            <label for="name">Enter a player name:</label>
-            <input type="text" bind:value={inputPlayerName} />
-            <button type="submit">Add player</button>
+            <input
+                type="text"
+                bind:value={inputPlayerName}
+                class="bord-secondary bord--solid bord-width--2 theme-radius"
+            />
+
+            <button
+                type="submit"
+                class="bg-accent clr-primary px--24 py--12 theme-radius text--24 my--24"
+                >Add player</button
+            >
         </form>
     </container>
 </grid>
 
 {#if $players.length > 0}
-    <grid class="place--center h--100vh">
+    <grid class="place--center h--100">
         <container class="container text--center">
             <h2>Players:</h2>
             <ul>
@@ -119,7 +137,7 @@
 {/if}
 
 {#if $gamemode.onGoing}
-    <grid class="place--center h--100vh">
+    <grid class="place--center h--100">
         <container class="container text--center">
             <h2>Gameplay:</h2>
             <p>Selected player: {$choosenPlayer.name}</p>

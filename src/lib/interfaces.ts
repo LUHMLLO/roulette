@@ -14,7 +14,7 @@ export interface Player {
 }
 
 export interface Gamemode {
-  icon: string;
+  icon?: string;
   name: string;
   description: string;
   onGoing: boolean;
