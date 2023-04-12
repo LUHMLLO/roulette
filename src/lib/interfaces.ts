@@ -2,19 +2,23 @@ export enum Difficulty {
   Easy, Medium, Hard
 }
 
-export interface Action {
+export interface Dare {
   difficulty: Difficulty;
   description: string;
 }
 
-export interface Gamemode {
+export interface Player {
+  icon?: string;
   name: string;
-  description: string;
-  actions: Action[];
+  points?: number;
 }
 
-export interface Player {
+export interface Gamemode {
+  icon: string;
   name: string;
-  avatar?: string;
-  points?: number;
+  description: string;
+  onGoing: boolean;
+  dares?: Dare[];
+  players?: Player[];
+  winners?: Player[];
 }
