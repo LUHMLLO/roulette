@@ -9,7 +9,7 @@
 ## Screens
 
 - Splash / Greeting
-- Choose Gamemode / Make your own
+- Choose Game / Make your own
 - Who's playing
 - Play
 - Leaderboard

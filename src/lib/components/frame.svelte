@@ -1,22 +1,14 @@
 <script lang="ts">
-    import { nextRound } from "$lib/functions";
-    import { choosenDare, choosenPlayer, gamemode } from "$lib/stores";
+    import { game, nextRound } from "$lib/stores";
 
-    const corners = "theme-radius";
-    const outline = "bord-secondary bord--solid bord-width--2";
+    const Xscreen =
+        "bg-dark block w--100vw h--100vh p--fixed inset overflow--hidden";
+    const Xframe =
+        "bg-brown--1 flex column w--100 h--100 pt--16 px--24 pb--12 gap--12 bord-secondary bord--solid bord-width--2 theme-radius overflow--hidden";
+    const Xcontent =
+        "bg-primary block w--100 h--100 bord-secondary bord--solid bord-width--2 theme-radius overflow--hidden scroll--y";
 
-    const icon = "icon size--24";
-    const gap = "gap--6";
-    const row = `flex row align--center ${gap}`;
-
-    const button = `my--auto px--12 py--6 clr-primary theme-radius text--center justify--center ${row} ${outline}`;
-
-    const noscroll = "overflow--hidden";
-    const scrollColumn = "overflow--hidden scroll--y";
-
-    const xScreen = `bg-dark block w--100vw h--100vh p--fixed inset ${noscroll}`;
-    const xContent = `bg-primary block w--100 h--100 ${outline} ${corners} ${scrollColumn}`;
-    const xFrame = `bg-brown--1 flex column w--100 h--100 pt--16 px--24 pb--12 gap--12 ${outline} ${corners} ${noscroll}`;
+    const button = `my--auto px--12 py--6 clr-primary theme-radius text--center justify--center flex row align--center gap--6 bord-secondary bord--solid bord-width--2`;
 
     function nextMinus() {
         nextRound();
@@ -26,19 +18,20 @@
     }
 </script>
 
-<x-screen class={xScreen}>
-    <x-frame class={xFrame}>
-        <x-content class={xContent}>
+<x-screen class={Xscreen}>
+    <x-frame class={Xframe}>
+        <x-content class={Xcontent}>
             <slot />
         </x-content>
-        <row class="noshrink {row}">
-            <row class="justify--start {row}">
+
+        <row class="align--center">
+            <row class="justify--start">
                 <icon
-                    class=" bg-yellow--5 clr-tertiary bord-radius--24 {icon} {outline}"
+                    class="bg-yellow--5 clr-tertiary icon size--24 bord-radius--24 bord-secondary bord--solid bord-width--2"
                 />
             </row>
-            <row class="justify--center {row}">
-                {#if $gamemode.onGoing}
+            <row class="justify--center align--center gap--6">
+                {#if $game.onGoing}
                     <button
                         class="bg-red--5 {button}"
                         on:click={() => nextMinus()}
@@ -53,8 +46,8 @@
                     </button>
                 {/if}
             </row>
-            <row class="justify--end {row}">
-                <icon class="clr-tertiary {icon}">
+            <row class="justify--end">
+                <icon class="clr-tertiary icon size--24">
                     <i class="iconoir-minus" />
                 </icon>
             </row>

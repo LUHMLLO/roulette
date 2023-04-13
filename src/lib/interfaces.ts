@@ -1,9 +1,14 @@
-export enum Difficulty {
+export enum ActionType {
+  Dare, Truth
+}
+
+export enum ActionDifficulty {
   Easy, Medium, Hard
 }
 
-export interface Dare {
-  difficulty: Difficulty;
+export interface Action {
+  type: ActionType;
+  difficulty: ActionDifficulty;
   description: string;
 }
 
@@ -13,12 +18,13 @@ export interface Player {
   lives: number
 }
 
-export interface Gamemode {
-  icon: string;
+export interface Game {
+  icon?: string;
   name: string;
-  description: string;
+  description?: string;
+  screen?: number;
   onGoing: boolean;
   players?: Player[];
-  dares?: Dare[];
+  actions?: Action[];
   winners?: Player[];
 }
