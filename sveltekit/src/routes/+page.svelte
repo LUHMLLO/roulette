@@ -8,7 +8,7 @@
         startGame,
     } from "$lib/stores";
 
-    let inputPlayerName: string;
+    let inputPlayerName = "";
 </script>
 
 {#if !$game.screen}
