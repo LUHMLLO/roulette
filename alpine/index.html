@@ -6,11 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
     <link rel="icon" href="https://alpinejs.dev/favicon.png">
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://mindesignsystem.vercel.app/main.css">
     <style>
         :root {
@@ -35,7 +38,7 @@
                 if (this.captureName) {
                     player = this.captureName.trim()
                 } else {
-                    player = `player #${Math.floor(Math.random() * 100)}`
+                    player = 'player #' + Math.floor(Math.random() * 100)
                 }
 
                 this.players = [...this.players, { name: player, lives: 7 }]
@@ -189,10 +192,14 @@
                     class="bg-yellow--5 clr-tertiary icon size--24 bord-radius--24 bord-secondary bord--solid bord-width--2" />
             </row>
             <row class="justify--center align--center gap--6" x-show="game.isRunning">
-                <button class="bg-red--5 {button}" @click="nextRound()">
+                <button
+                    class="bg-red--5 my--auto px--12 py--6 clr-primary theme-radius text--center justify--center flex row align--center gap--6 bord-secondary bord--solid bord-width--2"
+                    @click="nextRound()">
                     <p>Pass</p>
                 </button>
-                <button class="bg-green--5 {button}" @click="nextRound()">
+                <button
+                    class="bg-green--5 my--auto px--12 py--6 clr-primary theme-radius text--center justify--center flex row align--center gap--6 bord-secondary bord--solid bord-width--2"
+                    @click="nextRound()">
                     <p>Done</p>
                 </button>
             </row>

@@ -73,6 +73,7 @@ declare module '$env/static/private' {
 	export const npm_package_version: string;
 	export const GIT_ASKPASS: string;
 	export const XDG_SEAT_PATH: string;
+	export const npm_package_devDependencies__sveltejs_adapter_static: string;
 	export const INVOCATION_ID: string;
 	export const MANAGERPID: string;
 	export const IMSETTINGS_MODULE: string;
@@ -204,6 +205,7 @@ declare module '$env/dynamic/private' {
 		npm_package_version: string;
 		GIT_ASKPASS: string;
 		XDG_SEAT_PATH: string;
+		npm_package_devDependencies__sveltejs_adapter_static: string;
 		INVOCATION_ID: string;
 		MANAGERPID: string;
 		IMSETTINGS_MODULE: string;
