@@ -8,7 +8,7 @@
     const Xcontent =
         "bg-primary block w--100 h--100 bord-secondary bord--solid bord-width--2 theme-radius overflow--hidden scroll--y";
 
-    const button = `my--auto px--12 py--6 clr-primary theme-radius text--center justify--center flex row align--center gap--6 bord-secondary bord--solid bord-width--2`;
+    const button = `my--auto px--12 py--6 clr-primary theme-radius text-center justify--center flex row align--center gap--6 bord-secondary bord--solid bord-width--2`;
 
     function nextMinus() {
         nextRound();

@@ -1,0 +1,36 @@
+.circle {
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+
+.no-overflow {
+    overflow: hidden;
+}
+
+.theme-radius {
+    border-radius: var(--borderRadius);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.clr-primary {
+    color: var(--clrPrimary);
+}
+
+.clr-secondary {
+    color: var(--clrSecondary);
+}
+
+.clr-tertiary {
+    color: var(--clrTertiary);
+}
+
+.clr-accent {
+    color: var(--clrAccent);
+}
+
+.clr-complementary {
+    color: var(--clrComplementary);
+}

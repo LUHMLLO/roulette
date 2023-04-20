@@ -1,0 +1,379 @@
+:root {
+  /* colors */
+  --clrPrimary: var(--clr-gray--10);
+  --clrSecondary: var(--clr-gray--0);
+  --clrTertiary: var(--clr-gray--2);
+  --clrAccent: var(--clr-red--5);
+  --clrComplementary: var(--clr-red--4);
+  --clrMuted: var(--clr-gray--9);
+
+  /* utils */
+  --borderWidth: 0.125rem;
+  --margin: 0.5rem;
+  --padding: .5rem 1rem;
+  --borderRadius: .75rem;
+
+  /* html */
+  --fontFamily: 'Schibsted Grotesk', sans-serif;
+  --fontSize: 1rem;
+  --fontWeight: 400;
+  --letterSpacing: 0;
+  --lineHeight: 1.5;
+
+  /* heading */
+  --headingFontFamily: 'Bebas Neue', cursive;
+  --headingFontWeight: 900;
+  --headingLetterSpacing: 0;
+  --headingLineHeight: 1.5;
+
+  /* button */
+  --buttonBackground: var(--clrMuted);
+  --buttonBorder: solid var(--borderWidth) var(--clrSecondary);
+  --buttonColor: var(--clrSecondary);
+  --buttonFontSize: 1.5rem;
+  --buttonFontFamily: 'Bebas Neue', cursive;
+  --buttonFontWeight: 500;
+
+  /* input */
+  --inputBackground: var(--clrMuted);
+  --inputBorder: solid var(--borderWidth) var(--clrSecondary);
+  --inputColor: var(--clrSecondary);
+  --inputFontSize: .875rem;
+  --inputFontFamily: var(--fontFamily);
+  --inputFontWeight: var(--fontWeight);
+
+  /* lists */
+  --unorderedListStylePosition: inside;
+  --unorderedListStyleType: disc;
+
+  --orderedListStylePosition: inside;
+  --orderedListStyleType: decimal;
+
+  --descriptionListStylePosition: inside;
+  --descriptionListStyleType: none;
+
+  /* tables */
+  --tableCollapse: collapse;
+  --tableSpacing: 0;
+  --tableTextAlign: left;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  transition-duration: 0.2s;
+}
+
+/* html,
+body,
+div,
+article,
+section,
+main,
+header,
+footer,
+nav,
+aside,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+pre,
+blockquote,
+figure,
+figcaption,
+hr,
+table,
+tr,
+th,
+td,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+label,
+select,
+option {
+  margin: var(--margin);
+  padding: var(--padding);;
+} */
+
+html {
+  background-color: transparent;
+  background: transparent;
+  font-size: 16px;
+  visibility: hidden;
+}
+
+body {
+  background-color: var(--clrPrimary);
+  color: var(--clrSecondary);
+  display: block;
+  font-family: var(--fontFamily);
+  font-size: var(--fontSize);
+  font-weight: var(--fontWeight);
+  min-height: 100vh;
+  line-height: var(--lineHeight);
+  visibility: visible;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  display: block;
+  font-family: var(--headingFontFamily);
+  font-weight: var(--headingFontWeight);
+  line-height: var(--headingLineHeight);
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3.5rem;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+h4 {
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 1.5rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p,
+a {
+  font: inherit;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--clrComplementary);
+}
+
+a:focus {
+  text-decoration: underline var(--clrAccent);
+}
+
+a:active {
+  color: var(--clrAccent);
+}
+
+a:disabled {
+  color: var(--clrMuted);
+}
+
+figure {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+img,
+.img {
+  aspect-ratio: 1/1;
+  border: none;
+  object-fit: cover;
+  display: block;
+  height: auto;
+  max-height: 100%;
+  max-width: 100%;
+  outline: none;
+}
+
+video,
+audio {
+  aspect-ratio: 3/2;
+  border: none;
+  display: block;
+  min-height: 1.5rem;
+  max-width: 100%;
+  outline: none;
+}
+
+ul {
+  list-style: var(--unorderedListStyleType) var(--unorderedListStylePosition);
+}
+
+ol {
+  list-style: var(--orderedListStyleType) var(--orderedListStylePosition);
+}
+
+button,
+.button {
+  align-content: center;
+  align-items: center;
+  background-color: var(--buttonBackground);
+  border: var(--buttonBorder);
+  color: var(--buttonColor);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--buttonFontFamily);
+  font-size: var(--buttonFontSize);
+  font-weight: var(--buttonFontWeight);
+  min-height: 3rem;
+  padding: 0 1.5rem;
+  max-width: 100%;
+}
+
+button:hover {
+  --buttonBackground: var(--clrComplementary);
+  --buttonBorder: solid var(--borderWidth) var(--clrComplementary);
+  --buttonColor: var(--clrPrimary);
+}
+
+button:focus {
+  --buttonBorder: solid var(--borderWidth) var(--clrComplementary);
+  --buttonColor: var(--clrAccent);
+}
+
+button:active {
+  --buttonBackground: var(--clrAccent);
+  --buttonColor: var(--clrSecondary);
+}
+
+button:disabled {
+  --buttonBackground: var(--clrMuted);
+  --buttonBorder: solid var(--borderWidth) var(--clrMuted);
+  --buttonColor: var(--clrPrimary);
+}
+
+
+input {
+  background-color: var(--inputBackground);
+  border: var(--inputBorder);
+  color: var(--inputColor);
+  cursor: auto;
+  display: inline-block;
+  font-family: var(--inputFontFamily);
+  font-size: var(--inputFontSize);
+  font-weight: var(--inputFontWeight);
+  height: 3rem;
+  padding: var(--padding);
+  width: 100%;
+}
+
+input:hover {
+  --inputBorder: solid var(--borderWidth) var(--clrComplementary);
+}
+
+input:focus {
+  --inputBorder: solid var(--borderWidth) var(--clrAccent);
+}
+
+input:active {
+  --inputBackground: transparent;
+  --inputBorder: solid var(--borderWidth) var(--clrAccent);
+  --inputColor: var(--clrSecondary);
+}
+
+input:disabled {
+  --inputBackground: var(--clrMuted);
+  --inputBorder: solid var(--borderWidth) var(--clrMuted);
+  --inputColor: var(--clrPrimary);
+}
+
+
+textarea {
+  background-color: var(--inputBackground);
+  border: var(--inputBorder);
+  color: var(--inputColor);
+  cursor: auto;
+  display: inline-block;
+  font-family: var(--inputFontFamily);
+  font-size: var(--inputFontSize);
+  font-weight: var(--inputFontWeight);
+  min-height: 5.75rem;
+  padding: var(--padding);
+  width: 100%;
+}
+
+textarea:hover {
+  --inputBorder: solid var(--borderWidth) var(--clrComplementary);
+}
+
+textarea:focus {
+  --inputBorder: solid var(--borderWidth) var(--clrAccent);
+}
+
+textarea:active {
+  --inputBackground: transparent;
+  --inputBorder: solid var(--borderWidth) var(--clrAccent);
+  --inputColor: var(--clrSecondary);
+}
+
+textarea:disabled {
+  --inputBackground: var(--clrMuted);
+  --inputBorder: solid var(--borderWidth) var(--clrMuted);
+  --inputColor: var(--clrPrimary);
+}
+
+table {
+  border-collapse: var(--tableCollapse);
+  border-spacing: var(--tableSpacing);
+  display: table;
+  width: 100%;
+}
+
+th {
+  background-color: var(--clrMuted);
+}
+
+th,
+td {
+  padding: var(--padding);
+  text-align: var(--tableTextAlign);
+}
+
+/* custom */
+grid,
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+
+column,
+.column {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+}
+
+icon,
+.icon {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}

@@ -4,6 +4,7 @@
         choosenAction,
         choosenPlayer,
         game,
+        nextRound,
         players,
         startGame,
     } from "$lib/stores";
@@ -12,8 +13,8 @@
 </script>
 
 {#if !$game.screen}
-    <grid class="place--center h--100">
-        <container class="container text--center">
+    <grid class="place--center h--100vh">
+        <container class="container text-center">
             <h3 class="clr-accent">Bonjour!</h3>
             <h1 class="clr-secondary">Bienvenue to Roulette.</h1>
             <p class="clr-tertiary text--24">
@@ -22,7 +23,7 @@
                 With so many possibilities, who knows what the outcome will be!
             </p>
             <button
-                class="bg-accent clr-primary px--24 py--12 theme-radius text--24 my--24"
+                class="theme-radius my--24"
                 on:click={() => ($game.screen = 1)}>Start playing</button
             >
         </container>
@@ -30,8 +31,8 @@
 {/if}
 
 {#if $game.screen == 1}
-    <grid class="place--center h--100">
-        <container class="container text--center">
+    <grid class="place--center h--100vh">
+        <container class="container text-center">
             <h3>Who's going to play?</h3>
 
             <form
@@ -66,7 +67,7 @@
             {/if}
 
             <button
-                class="bg-accent clr-primary px--24 py--12 theme-radius text--24 my--24"
+                class="theme-radius my--24"
                 disabled={$players.length < 2 || $players.length < 1}
                 on:click={() => {
                     startGame();
@@ -78,10 +79,18 @@
 
 {#if $game.screen == 2}
     {#if $game.onGoing}
-        <grid class="place--center h--100">
-            <container class="container text--center">
+        <grid class="place--center h--100vh">
+            <container class="container text-center">
                 <h1 class="clr-accent">{$choosenPlayer.name}</h1>
                 <p class="text--24">{$choosenAction.description}</p>
+
+                <button
+                    class="theme-radius my--24"
+                    disabled={$players.length < 2 || $players.length < 1}
+                    on:click={() => {
+                        nextRound();
+                    }}>Next</button
+                >
             </container>
         </grid>
     {/if}
