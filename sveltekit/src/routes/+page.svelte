@@ -36,7 +36,7 @@
             <h3>Who's going to play?</h3>
 
             <form
-                class="flex row bord-secondary bord--solid bord-width--2 theme-radius overflow--hidden"
+                class="flex row bord-secondary bord--solid bord-width--2 theme-radius overflow--hidden my--24"
                 on:submit|preventDefault={() => {
                     addPlayer(
                         undefined,
@@ -59,11 +59,11 @@
             </form>
 
             {#if $players.length > 0}
-                <ul class="flex row justify--center align--center">
+                <row class="flex row justify--center align--center gap--16">
                     {#each $players as player}
-                        <li>{player.name}</li>
+                        <h6>{player.name}</h6>
                     {/each}
-                </ul>
+                </row>
             {/if}
 
             <button

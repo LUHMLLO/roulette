@@ -24,7 +24,7 @@
   --headingFontFamily: 'Bebas Neue', cursive;
   --headingFontWeight: 900;
   --headingLetterSpacing: 0;
-  --headingLineHeight: 1.5;
+  --headingLineHeight: 1;
 
   /* button */
   --buttonBackground: var(--clrMuted);
