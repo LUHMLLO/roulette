@@ -2,13 +2,13 @@
     import { game, nextRound } from "$lib/stores";
 
     const Xscreen =
-        "bg-dark block w--100vw h--100vh p--fixed inset overflow--hidden";
+        "bg-dark block w--100vw h-100vh p-fixed inset overflow--hidden";
     const Xframe =
-        "bg-brown--1 flex column w--100 h--100 pt--16 px--24 pb--12 gap--12 bord-secondary bord--solid bord-width--2 theme-radius overflow--hidden";
+        "bg-brown--1 flex column w--100 h-100 pt--16 px--24 pb--12 gap-12 bord-secondary bord--solid bord-width--2 theme-radius overflow--hidden";
     const Xcontent =
-        "bg-primary block w--100 h--100 bord-secondary bord--solid bord-width--2 theme-radius overflow--hidden scroll--y";
+        "bg-primary block w--100 h-100 bord-secondary bord--solid bord-width--2 theme-radius overflow--hidden scroll--y";
 
-    const button = `my--auto px--12 py--6 clr-primary theme-radius text-center justify--center flex row align--center gap--6 bord-secondary bord--solid bord-width--2`;
+    const button = `my--auto px--12 py--6 clr-primary theme-radius text-center justify--center flex row align--center gap-6 bord-secondary bord--solid bord-width--2`;
 
     function nextMinus() {
         nextRound();
@@ -30,7 +30,7 @@
                     class="bg-yellow--5 clr-tertiary icon size--24 bord-radius--24 bord-secondary bord--solid bord-width--2"
                 />
             </row>
-            <row class="justify--center align--center gap--6">
+            <row class="justify--center align--center gap-6">
                 {#if $game.onGoing}
                     <button
                         class="bg-red--5 {button}"

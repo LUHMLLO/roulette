@@ -4,8 +4,8 @@
 
    ```pug
   body
-    grid.cols--2.dpt--5.theme-radius.noverflow
-        column.gap--24
+    grid.cols-2.dpt--5.theme-radius.no-overflow
+        column.gap-24
             icon
                 img
             column
@@ -15,7 +15,7 @@
                 p Artwork by authorname and collaboratorname
                 p For more details and legal notices, go to the About Illustrator Screen.
         column
-            figure.p--8.theme-radius
+            figure.p-8.theme-radius
                 img
 
    ```

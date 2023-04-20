@@ -68,16 +68,8 @@
   transition-duration: 0.2s;
 }
 
-/* html,
-body,
-div,
 article,
 section,
-main,
-header,
-footer,
-nav,
-aside,
 h1,
 h2,
 h3,
@@ -88,27 +80,19 @@ p,
 ul,
 ol,
 li,
-pre,
 blockquote,
 figure,
 figcaption,
 hr,
 table,
-tr,
-th,
-td,
-form,
-fieldset,
-legend,
 button,
 input,
 textarea,
 label,
 select,
 option {
-  margin: var(--margin);
-  padding: var(--padding);;
-} */
+  margin-block: 0rem;
+}
 
 html {
   background-color: transparent;
@@ -140,6 +124,7 @@ h6 {
   font-family: var(--headingFontFamily);
   font-weight: var(--headingFontWeight);
   line-height: var(--headingLineHeight);
+  margin-block: 1rem;
 }
 
 h1 {
@@ -353,27 +338,4 @@ th,
 td {
   padding: var(--padding);
   text-align: var(--tableTextAlign);
-}
-
-/* custom */
-grid,
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  width: 100%;
-}
-
-column,
-.column {
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  width: 100%;
-}
-
-icon,
-.icon {
-  display: grid;
-  place-items: center;
-  overflow: hidden;
 }
