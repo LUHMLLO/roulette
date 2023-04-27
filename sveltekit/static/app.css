@@ -1,87 +1,11 @@
 :root {
-    --theme--fontFamily: 'Bebas Neue', cursive;
-    --theme--fontSize: 16px;
-    --theme--fontWeight: 400;
-    --theme--fontLineHeight: 0.92;
-    --theme--headingFontFamily: 'Bebas Neue', cursive;
+    --clrPrimary: var(--clr-gray--10);
+    --clrSecondary: var(--clr-gray--0);
+    --clrTertiary: var(--clr-gray--2);
+    --clrAccent: var(--clr-red--5);
+    --clrComplementary: var(--clr-red--4);
+    --clrMuted: var(--clr-gray--9);
 
-    --theme--primary: var(--clr-gray--10);
-    --theme--secondary: var(--clr-gray--0);
-    --theme--tertiary: var(--clr-gray--2);
-    --theme--accent: var(--clr-red--5);
-    --theme--complementary: var(--clr-red--4);
-    --theme--muted: var(--clr-gray--9);
+    --fontFamily: 'Schibsted Grotesk', sans-serif;
+    --headingFontFamily: 'Bebas Neue', cursive;
 }
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-
-html {
-    background-color: transparent;
-    background: transparent;
-    display: contents;
-    margin: 0;
-    padding: 0;
-    visibility: hidden;
-}
-
-body {
-    background-color: var(--theme--primary);
-    display: block;
-    font-family: var(--theme--fontFamily);
-    font-size: var(--theme--fontSize);
-    font-weight: var(--theme--fontWeight);
-    height: 100vh;
-    line-height: var(--theme--fontLineHeight);
-    margin: inset;
-    inset: 0;
-    visibility: visible;
-    width: 100vw;
-
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: var(--theme--headingFontFamily);
-}
-
-div,
-p,
-a,
-q,
-blockquote,
-input,
-button,
-caption,
-title,
-legend,
-sub,
-sup,
-small,
-span {
-    font: inherit;
-}
-
-
-button {
-    border-color: var(--theme--complementary);
-    color: var(--theme--secondary);
-}
-
-button:hover {
-    background-color: var(--theme--complementary);
-    color: var(--theme--secondary);
-}
-
-button:active {
-    background-color: var(--theme--accent);
-}
-
