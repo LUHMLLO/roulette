@@ -1,11 +1,22 @@
 :root {
-    --clrPrimary: var(--clr-gray--10);
-    --clrSecondary: var(--clr-gray--0);
-    --clrTertiary: var(--clr-gray--2);
-    --clrAccent: var(--clr-red--5);
-    --clrComplementary: var(--clr-red--4);
-    --clrMuted: var(--clr-gray--9);
+    --clr-primary: var(--clr-gray--10);
+    --clr-secondary: var(--clr-gray--0);
+    --clr-tertiary: var(--clr-gray--2);
+    --clr-accent: var(--clr-red--5);
+    --clr-complementary: var(--clr-red--4);
+    --clr-muted: var(--clr-gray--9);
 
     --fontFamily: 'Schibsted Grotesk', sans-serif;
     --headingFontFamily: 'Bebas Neue', cursive;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --clr-primary: var(--clr-gray--10);
+        --clr-secondary: var(--clr-gray--0);
+        --clr-tertiary: var(--clr-gray--2);
+        --clr-accent: var(--clr-red--5);
+        --clr-complementary: var(--clr-red--4);
+        --clr-muted: var(--clr-gray--9);
+    }
 }
