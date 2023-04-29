@@ -1,21 +1,21 @@
 <script lang="ts">
     // start enums
-    enum ActionType {
-        Dare,
-        Truth,
-    }
-
     enum ActionDifficulty {
         Easy,
         Medium,
         Hard,
     }
+
+    enum ActionType {
+        Dare,
+        Truth,
+    }
     // end enums
 
     // start interfaces
     interface Action {
-        type: ActionType;
         difficulty: ActionDifficulty;
+        type: ActionType;
         description: string;
     }
 
@@ -34,7 +34,140 @@
     // start vars
     let captureName: string;
     let players: Player[] = [];
-    let actions: Action[] = [];
+    let actions: Action[] = [
+        {
+            difficulty: ActionDifficulty.Easy,
+            type: ActionType.Dare,
+            description: "Do 20 jumping jacks",
+        },
+
+        {
+            difficulty: ActionDifficulty.Easy,
+            type: ActionType.Dare,
+            description: "Do a silly dance",
+        },
+
+        {
+            difficulty: ActionDifficulty.Easy,
+            type: ActionType.Dare,
+            description: "Tell a joke",
+        },
+
+        {
+            difficulty: ActionDifficulty.Easy,
+            type: ActionType.Dare,
+            description: "Sing a song in a different language",
+        },
+
+        {
+            difficulty: ActionDifficulty.Easy,
+            type: ActionType.Dare,
+            description: "Say the alphabet backwards",
+        },
+
+        {
+            difficulty: ActionDifficulty.Medium,
+            type: ActionType.Dare,
+            description: "Do 10 push-ups",
+        },
+
+        {
+            difficulty: ActionDifficulty.Medium,
+            type: ActionType.Dare,
+            description: "Talk like a pirate for the rest of the game",
+        },
+
+        {
+            difficulty: ActionDifficulty.Medium,
+            type: ActionType.Dare,
+            description: "Do an impression of your favorite celebrity",
+        },
+        {
+            difficulty: ActionDifficulty.Hard,
+            type: ActionType.Dare,
+            description: "Wear your clothes backwards for the rest of the game",
+        },
+
+        {
+            difficulty: ActionDifficulty.Hard,
+            type: ActionType.Dare,
+            description: "Take a shot of hot sauce",
+        },
+
+        {
+            difficulty: ActionDifficulty.Hard,
+            type: ActionType.Dare,
+            description: "Take a shot of hot sauce",
+        },
+
+        {
+            difficulty: ActionDifficulty.Easy,
+            type: ActionType.Truth,
+            description: "Whats your favorite drink?",
+        },
+
+        {
+            difficulty: ActionDifficulty.Medium,
+            type: ActionType.Truth,
+            description: "Who was your first kiss?",
+        },
+
+        {
+            difficulty: ActionDifficulty.Hard,
+            type: ActionType.Truth,
+            description: "Say the first and last letters of your crush name",
+        },
+        {
+            difficulty: ActionDifficulty.Easy,
+            type: ActionType.Truth,
+            description: "What is your favorite food?",
+        },
+        {
+            difficulty: ActionDifficulty.Medium,
+            type: ActionType.Dare,
+            description: "Sing a song in public",
+        },
+        {
+            difficulty: ActionDifficulty.Hard,
+            type: ActionType.Truth,
+            description: "Have you ever stolen something before?",
+        },
+        {
+            difficulty: ActionDifficulty.Hard,
+            type: ActionType.Dare,
+            description: "Jump into a pool fully clothed",
+        },
+        {
+            difficulty: ActionDifficulty.Easy,
+            type: ActionType.Truth,
+            description: "What is your biggest fear?",
+        },
+        {
+            difficulty: ActionDifficulty.Medium,
+            type: ActionType.Dare,
+            description: "Do a cartwheel or a handstand",
+        },
+        {
+            difficulty: ActionDifficulty.Hard,
+            type: ActionType.Truth,
+            description: "Have you ever cheated on a test?",
+        },
+        {
+            difficulty: ActionDifficulty.Hard,
+            type: ActionType.Dare,
+            description: "Eat a spoonful of hot sauce",
+        },
+        {
+            difficulty: ActionDifficulty.Easy,
+            type: ActionType.Truth,
+            description: "What is your favorite TV show?",
+        },
+        {
+            difficulty: ActionDifficulty.Medium,
+            type: ActionType.Dare,
+            description: "Call a friend and tell them a joke",
+        },
+    ];
 
     let game: Game = {
         screen: 0,
@@ -57,91 +190,6 @@
                 { name: "player #" + Math.floor(Math.random() * 100) },
             ];
         }
-    }
-
-    function addAction(
-        type: ActionType,
-        difficulty: ActionDifficulty,
-        description: string
-    ) {
-        actions = [
-            ...actions,
-            { type: type, difficulty: difficulty, description: description },
-        ];
-    }
-
-    function declareBaseActions() {
-        addAction(
-            ActionType.Dare,
-            ActionDifficulty.Easy,
-            "Do 20 jumping jacks"
-        );
-
-        addAction(ActionType.Dare, ActionDifficulty.Easy, "Do a silly dance");
-
-        addAction(ActionType.Dare, ActionDifficulty.Easy, "Tell a joke");
-
-        addAction(
-            ActionType.Dare,
-            ActionDifficulty.Easy,
-            "Sing a song in a different language"
-        );
-
-        addAction(
-            ActionType.Dare,
-            ActionDifficulty.Easy,
-            "Say the alphabet backwards"
-        );
-
-        addAction(ActionType.Dare, ActionDifficulty.Medium, "Do 10 push-ups");
-
-        addAction(
-            ActionType.Dare,
-            ActionDifficulty.Medium,
-            "Talk like a pirate for the rest of the game"
-        );
-
-        addAction(
-            ActionType.Dare,
-            ActionDifficulty.Medium,
-            "Do an impression of your favorite celebrity"
-        );
-
-        addAction(
-            ActionType.Dare,
-            ActionDifficulty.Hard,
-            "Wear your clothes backwards for the rest of the game"
-        );
-
-        addAction(
-            ActionType.Dare,
-            ActionDifficulty.Hard,
-            "Take a shot of hot sauce"
-        );
-
-        addAction(
-            ActionType.Dare,
-            ActionDifficulty.Hard,
-            "Take a shot of hot sauce"
-        );
-
-        addAction(
-            ActionType.Truth,
-            ActionDifficulty.Easy,
-            "Whats your favorite drink?"
-        );
-
-        addAction(
-            ActionType.Truth,
-            ActionDifficulty.Medium,
-            "Who was your first kiss?"
-        );
-
-        addAction(
-            ActionType.Truth,
-            ActionDifficulty.Hard,
-            "Say the first and last letters of your crush name"
-        );
     }
 
     function choosePlayer() {
@@ -172,7 +220,6 @@
 
     function prepareGame() {
         game.screen = 1;
-        declareBaseActions();
     }
 
     function startGame() {
