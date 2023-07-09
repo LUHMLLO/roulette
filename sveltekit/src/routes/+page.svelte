@@ -1,356 +1,259 @@
 <script lang="ts">
-    // start enums
-    enum ActionDifficulty {
-        Easy,
-        Medium,
-        Hard,
+    import DaresList from "./_lib/dares.json";
+    import TruthsList from "./_lib/truths.json";
+
+    enum Difficulty {
+        Easy = "easy",
+        Medium = "medium",
+        Hard = "hard",
     }
 
-    enum ActionType {
-        Dare,
-        Truth,
+    enum Option {
+        Dare = "dare",
+        Truth = "truth",
     }
-    // end enums
 
-    // start interfaces
-    interface Action {
-        difficulty: ActionDifficulty;
-        type: ActionType;
+    type Action = {
         description: string;
-    }
-
-    interface Player {
-        name: string;
-    }
-
-    interface Game {
-        screen: number;
-        isRunning: boolean;
-        difficulty?: ActionDifficulty;
-        type?: ActionType;
-    }
-    // end interfaces
-
-    // start vars
-    let captureName: string;
-    let players: Player[] = [];
-    let actions: Action[] = [
-        {
-            difficulty: ActionDifficulty.Easy,
-            type: ActionType.Dare,
-            description: "Do 20 jumping jacks",
-        },
-
-        {
-            difficulty: ActionDifficulty.Easy,
-            type: ActionType.Dare,
-            description: "Do a silly dance",
-        },
-
-        {
-            difficulty: ActionDifficulty.Easy,
-            type: ActionType.Dare,
-            description: "Tell a joke",
-        },
-
-        {
-            difficulty: ActionDifficulty.Easy,
-            type: ActionType.Dare,
-            description: "Sing a song in a different language",
-        },
-
-        {
-            difficulty: ActionDifficulty.Easy,
-            type: ActionType.Dare,
-            description: "Say the alphabet backwards",
-        },
-
-        {
-            difficulty: ActionDifficulty.Medium,
-            type: ActionType.Dare,
-            description: "Do 10 push-ups",
-        },
-
-        {
-            difficulty: ActionDifficulty.Medium,
-            type: ActionType.Dare,
-            description: "Talk like a pirate for the rest of the game",
-        },
-
-        {
-            difficulty: ActionDifficulty.Medium,
-            type: ActionType.Dare,
-            description: "Do an impression of your favorite celebrity",
-        },
-        {
-            difficulty: ActionDifficulty.Hard,
-            type: ActionType.Dare,
-            description: "Wear your clothes backwards for the rest of the game",
-        },
-
-        {
-            difficulty: ActionDifficulty.Hard,
-            type: ActionType.Dare,
-            description: "Take a shot of hot sauce",
-        },
-
-        {
-            difficulty: ActionDifficulty.Hard,
-            type: ActionType.Dare,
-            description: "Take a shot of hot sauce",
-        },
-
-        {
-            difficulty: ActionDifficulty.Easy,
-            type: ActionType.Truth,
-            description: "Whats your favorite drink?",
-        },
-
-        {
-            difficulty: ActionDifficulty.Medium,
-            type: ActionType.Truth,
-            description: "Who was your first kiss?",
-        },
-
-        {
-            difficulty: ActionDifficulty.Hard,
-            type: ActionType.Truth,
-            description: "Say the first and last letters of your crush name",
-        },
-        {
-            difficulty: ActionDifficulty.Easy,
-            type: ActionType.Truth,
-            description: "What is your favorite food?",
-        },
-        {
-            difficulty: ActionDifficulty.Medium,
-            type: ActionType.Dare,
-            description: "Sing a song in public",
-        },
-        {
-            difficulty: ActionDifficulty.Hard,
-            type: ActionType.Truth,
-            description: "Have you ever stolen something before?",
-        },
-        {
-            difficulty: ActionDifficulty.Hard,
-            type: ActionType.Dare,
-            description: "Jump into a pool fully clothed",
-        },
-        {
-            difficulty: ActionDifficulty.Easy,
-            type: ActionType.Truth,
-            description: "What is your biggest fear?",
-        },
-        {
-            difficulty: ActionDifficulty.Medium,
-            type: ActionType.Dare,
-            description: "Do a cartwheel or a handstand",
-        },
-        {
-            difficulty: ActionDifficulty.Hard,
-            type: ActionType.Truth,
-            description: "Have you ever cheated on a test?",
-        },
-        {
-            difficulty: ActionDifficulty.Hard,
-            type: ActionType.Dare,
-            description: "Eat a spoonful of hot sauce",
-        },
-        {
-            difficulty: ActionDifficulty.Easy,
-            type: ActionType.Truth,
-            description: "What is your favorite TV show?",
-        },
-        {
-            difficulty: ActionDifficulty.Medium,
-            type: ActionType.Dare,
-            description: "Call a friend and tell them a joke",
-        },
-    ];
-
-    let game: Game = {
-        screen: 0,
-        isRunning: false,
+        difficulty: Difficulty;
+        option: Option;
     };
 
-    let selectedPlayer: Player;
-    let selectedDifficulty: ActionDifficulty | undefined;
-    let selectedType: ActionType | undefined;
-    let selectedAction: Action;
-    // end vars
+    type Player = {
+        name: string;
+    };
 
-    //start functions
-    function addPlayer() {
-        if (captureName) {
-            players = [...players, { name: captureName.trim() }];
+    let gameScreen: number = 0;
+
+    let actions: Action[] = [
+        ...(DaresList as Action[]),
+        ...(TruthsList as Action[]),
+    ];
+
+    let players: Player[] = [];
+
+    let roundPlayer: Player | undefined = undefined;
+    let roundDifficulty: Difficulty | undefined = undefined;
+    let roundOption: Option | undefined = undefined;
+    let roundAction: Action | undefined = undefined;
+
+    function randomName(): string {
+        return "player #" + Math.floor(Math.random() * 1000);
+    }
+
+    function addPlayer(event: Event): void {
+        const inputElement = (
+            event.target as HTMLFormElement
+        ).querySelector<HTMLInputElement>('input[name="playerName"]');
+
+        const capturedName = inputElement ? inputElement.value : "";
+
+        if (capturedName) {
+            players = [...players, { name: capturedName.trim() }];
         } else {
-            players = [
-                ...players,
-                { name: "player #" + Math.floor(Math.random() * 100) },
+            players = [...players, { name: randomName().trim() }];
+        }
+
+        (event.target as HTMLFormElement).reset();
+    }
+
+    function shuffle<T>(array: T[]): T[] {
+        const shuffledArray = [...array];
+
+        for (let i = shuffledArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+
+            [shuffledArray[i], shuffledArray[j]] = [
+                shuffledArray[j],
+                shuffledArray[i],
             ];
         }
+
+        return shuffledArray;
     }
 
-    function choosePlayer() {
-        selectedPlayer = players[Math.floor(Math.random() * players.length)];
-    }
-
-    function chooseDifficulty(difficulty: ActionDifficulty) {
-        selectedDifficulty = difficulty;
-    }
-
-    function chooseType(type: ActionType) {
-        selectedType = type;
-        chooseAction();
-    }
-
-    function chooseAction() {
-        let filteredDifficulty = actions.filter(
-            (action) => action.difficulty === selectedDifficulty
+    function choosePlayer(): void {
+        let availablePlayers = shuffle(players).filter(
+            (p) => p.name !== roundPlayer?.name
         );
 
-        let filteredType = filteredDifficulty.filter(
-            (action) => action.type === selectedType
+        do {
+            roundPlayer = players[Math.floor(Math.random() * players.length)];
+        } while (!availablePlayers.includes(roundPlayer));
+    }
+
+    function chooseAction(): void {
+        let availableActions = shuffle(actions).filter(
+            (a) =>
+                a.description !== roundAction?.description &&
+                a.difficulty === roundDifficulty &&
+                a.option === roundOption
         );
 
-        selectedAction =
-            filteredType[Math.floor(Math.random() * filteredType.length)];
+        do {
+            roundAction = actions[Math.floor(Math.random() * actions.length)];
+        } while (!availableActions.includes(roundAction));
     }
-
-    function prepareGame() {
-        game.screen = 1;
-    }
-
-    function startGame() {
-        choosePlayer();
-        game.screen = 2;
-        game.isRunning = true;
-    }
-
-    function nextRound() {
-        selectedDifficulty = undefined;
-        selectedType = undefined;
-        choosePlayer();
-        chooseAction();
-    }
-    //end functions
 </script>
 
-{#if game.screen == 0}
-    <grid class="place-center h-100vh">
-        <container class="text-center">
-            <h3 class="clr-accent">Bonjour!</h3>
-            <h1>Bienvenue to Roulette.</h1>
-            <p class="mb-16">
-                Let's see if Lady Luck is on your side today.
-                <br />
-                With so many possibilities, who knows what the outcome will be!
-            </p>
-            <button on:click={() => prepareGame()}>Start playing</button>
-        </container>
-    </grid>
+{#if gameScreen == 0}
+    <header>
+        <h4 class="clr-accent">Bonjour!</h4>
+        <h3>Bienvenue to Roulette.</h3>
+        <p>
+            Let's see if Lady Luck is on your side today. With so many
+            possibilities, who knows what the outcome will be!
+        </p>
+    </header>
+    <button on:click={() => gameScreen++}>Let's Play</button>
 {/if}
 
-{#if game.screen == 1}
-    <grid class="place-center h-100vh">
-        <container class="text-center">
-            <h3>Who's going to play?</h3>
+{#if gameScreen == 1}
+    <header>
+        <h3>Who's playing?</h3>
+        <p>The game requires a minimum of 2 players to be able to start.</p>
+    </header>
 
-            <form
-                on:submit|preventDefault={addPlayer}
-                class="row align-center no-overflow"
+    <form on:submit|preventDefault={addPlayer}>
+        <input type="text" name="playerName" class="text-start w-100" />
+
+        <button type="submit" class="ps-absolute my-auto top bottom right">
+            <icon class="size-32">
+                <i class="iconoir-plus" />
+            </icon>
+        </button>
+    </form>
+
+    {#if players.length > 0}
+        <row class="justify-center align-center gap-16">
+            {#each players as player}
+                <h6>{player.name}</h6>
+            {/each}
+        </row>
+    {/if}
+
+    <button
+        disabled={players.length < 2 || players.length < 1}
+        on:click={() => {
+            choosePlayer();
+            gameScreen++;
+        }}
+    >
+        Start Round
+    </button>
+{/if}
+
+{#if gameScreen == 2}
+    {#if roundPlayer}
+        <header>
+            <h3>{roundPlayer.name}</h3>
+        </header>
+    {/if}
+
+    {#if !roundDifficulty}
+        <row class="align-center justify-center gap-16">
+            <button on:click={() => (roundDifficulty = Difficulty.Easy)}>
+                Easy
+            </button>
+            <button on:click={() => (roundDifficulty = Difficulty.Medium)}>
+                Medium
+            </button>
+            <button on:click={() => (roundDifficulty = Difficulty.Hard)}>
+                Hard
+            </button>
+        </row>
+    {/if}
+
+    {#if !roundOption && roundDifficulty}
+        <row class="align-center justify-center gap-16">
+            <button
+                on:click={() => {
+                    roundOption = Option.Truth;
+                    chooseAction();
+                }}
             >
-                <input type="text" name="name" bind:value={captureName} />
+                Truth
+            </button>
+            <button
+                on:click={() => {
+                    roundOption = Option.Dare;
+                    chooseAction();
+                }}
+            >
+                Dare
+            </button>
+        </row>
+    {/if}
 
-                <button type="submit">
-                    <icon class="size-32">
-                        <i class="iconoir-plus" />
-                    </icon>
-                </button>
-            </form>
+    {#if roundAction && roundDifficulty && roundOption}
+        <column
+            id="card"
+            class="align-center justify-center text-center px-16 py-8 bg-accent corners bord bord-onAccent"
+        >
+            <h4>{roundAction.description}</h4>
+        </column>
 
-            {#if players.length > 0}
-                <row class="justify-center align-center gap-16 my-16">
-                    {#each players as player}
-                        <h6>{player.name}</h6>
-                    {/each}
-                </row>
-            {/if}
-
+        <row class="align-center justify-center gap-16">
             <button
                 disabled={players.length < 2 || players.length < 1}
                 on:click={() => {
-                    startGame();
-                }}>Start game</button
+                    roundDifficulty = undefined;
+                    roundOption = undefined;
+                    choosePlayer();
+                }}
             >
-        </container>
-    </grid>
-{/if}
-
-{#if game.screen == 2}
-    {#if game.isRunning}
-        <grid class="place-center h-100vh">
-            <container class="text-center">
-                <h1 class="clr-accent">{selectedPlayer.name}</h1>
-
-                {#if selectedDifficulty == undefined}
-                    <grid class="place-center mb-16">
-                        <h6>Difficulty</h6>
-                        <row class="align-center justify-center gap-16">
-                            <button
-                                on:click={() =>
-                                    chooseDifficulty(ActionDifficulty.Easy)}
-                            >
-                                Easy
-                            </button>
-                            <button
-                                on:click={() =>
-                                    chooseDifficulty(ActionDifficulty.Medium)}
-                            >
-                                Medium
-                            </button>
-                            <button
-                                on:click={() =>
-                                    chooseDifficulty(ActionDifficulty.Hard)}
-                            >
-                                Hard
-                            </button>
-                        </row>
-                    </grid>
-                {/if}
-
-                {#if selectedType == undefined}
-                    <grid class="place-center mb-16">
-                        <h6>Choose</h6>
-                        <row class="align-center justify-center gap-16">
-                            <button
-                                on:click={() => chooseType(ActionType.Truth)}
-                                disabled={selectedDifficulty == undefined}
-                            >
-                                Truth
-                            </button>
-                            <small>or</small>
-                            <button
-                                on:click={() => chooseType(ActionType.Dare)}
-                                disabled={selectedDifficulty == undefined}
-                                >Dare</button
-                            >
-                        </row>
-                    </grid>
-                {/if}
-
-                {#if selectedAction}
-                    <p class="mb-16">{selectedAction.description}</p>
-
-                    <button
-                        disabled={players.length < 2 || players.length < 1}
-                        on:click={() => {
-                            nextRound();
-                        }}>Next</button
-                    >
-                {/if}
-            </container>
-        </grid>
+                Skip
+            </button>
+            <button
+                disabled={players.length < 2 || players.length < 1}
+                on:click={() => {
+                    roundDifficulty = undefined;
+                    roundOption = undefined;
+                    choosePlayer();
+                }}
+            >
+                Next
+            </button>
+        </row>
     {/if}
 {/if}
+
+<style lang="scss">
+    #card {
+        width: 250px;
+        max-width: 70vw;
+        height: 350px;
+        max-height: 60vh;
+
+        &::before,
+        &::after {
+            content: "";
+
+            position: absolute;
+
+            display: inherit;
+
+            border: inherit;
+            border-radius: inherit;
+
+            width: inherit;
+            max-width: inherit;
+            height: inherit;
+            max-height: inherit;
+        }
+
+        &::before {
+            background-color: var(--clr-accentDark);
+
+            rotate: -6deg;
+            z-index: -2;
+        }
+
+        &::after {
+            background-color: var(--clr-accentDark);
+
+            rotate: -3deg;
+            z-index: -1;
+        }
+    }
+</style>

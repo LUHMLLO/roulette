@@ -1,0 +1,52 @@
+[
+    {
+        "description": "Sing a song of your choice in front of everyone.",
+        "difficulty": "easy",
+        "option": "dare"
+    },
+    {
+        "description": "Do your best impersonation of a famous celebrity.",
+        "difficulty": "easy",
+        "option": "dare"
+    },
+    {
+        "description": "Walk on your hands from one end of the room to the other.",
+        "difficulty": "easy",
+        "option": "dare"
+    },
+    {
+        "description": "Eat a spoonful of a spicy sauce or condiment.",
+        "difficulty": "medium",
+        "option": "dare"
+    },
+    {
+        "description": "Do a breakdance move or attempt a breakdance move.",
+        "difficulty": "medium",
+        "option": "dare"
+    },
+    {
+        "description": "Do a handstand against a wall for at least 30 seconds.",
+        "difficulty": "medium",
+        "option": "dare"
+    },
+    {
+        "description": "Call a random number and sing 'Happy Birthday' to the person who answers.",
+        "difficulty": "medium",
+        "option": "dare"
+    },
+    {
+        "description": "Do a cartwheel or a somersault in the middle of the room.",
+        "difficulty": "hard",
+        "option": "dare"
+    },
+    {
+        "description": "Take a selfie with a stranger and post it on social media with a funny caption.",
+        "difficulty": "hard",
+        "option": "dare"
+    },
+    {
+        "description": "Eat a spoonful of a combination of two random ingredients (e.g., ketchup and mustard).",
+        "difficulty": "hard",
+        "option": "dare"
+    }
+]

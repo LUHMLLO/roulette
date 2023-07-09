@@ -1,0 +1,52 @@
+[
+    {
+        "description": "What is your biggest fear?",
+        "difficulty": "easy",
+        "option": "truth"
+    },
+    {
+        "description": "What is your favorite childhood memory?",
+        "difficulty": "easy",
+        "option": "truth"
+    },
+    {
+        "description": "Have you ever stolen something? If yes, what was it?",
+        "difficulty": "easy",
+        "option": "truth"
+    },
+    {
+        "description": "What is one thing you regret doing?",
+        "difficulty": "medium",
+        "option": "truth"
+    },
+    {
+        "description": "Have you ever cheated on a test or exam? If yes, explain.",
+        "difficulty": "medium",
+        "option": "truth"
+    },
+    {
+        "description": "What is the most embarrassing thing you've done in public?",
+        "difficulty": "medium",
+        "option": "truth"
+    },
+    {
+        "description": "What is the most embarrassing nickname you've ever had?",
+        "difficulty": "medium",
+        "option": "truth"
+    },
+    {
+        "description": "What is your most irrational fear?",
+        "difficulty": "hard",
+        "option": "truth"
+    },
+    {
+        "description": "Have you ever lied to a friend? If yes, what was the lie?",
+        "difficulty": "hard",
+        "option": "datruthre"
+    },
+    {
+        "description": "What is one secret you've never told anyone?",
+        "difficulty": "hard",
+        "option": "truth"
+    }
+]
